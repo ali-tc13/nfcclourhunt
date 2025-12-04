@@ -1,100 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Tap In Bingo | Melanated in Melbourne</title>
-<style>
-  :root {
-    --mim-purple: #4527a0;
-    --mim-dark: #1b0b30;
-    --mim-gold: #ffca28;
-    --mim-gold-soft: #ffd54f;
-    --text-light: #fdf7ff;
-    --text-muted: #cbb9e5;
-  }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Tap In Bingo | Melanated in Melbourne</title>
+  <style>
+    :root {
+      --mim-purple: #4527a0;
+      --mim-dark: #1b0b30;
+      --mim-gold: #ffca28;
+      --mim-gold-soft: #ffd54f;
+      --text-light: #fdf7ff;
+      --text-muted: #cbb9e5;
+    }
 
-  body {
-    margin: 0;
-    min-height: 100vh;
-    background: radial-gradient(circle at top, var(--mim-purple), var(--mim-dark));
-    color: var(--text-light);
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-  }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: radial-gradient(circle at top, var(--mim-purple), var(--mim-dark));
+      color: var(--text-light);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
 
-  .brand {
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: var(--mim-gold);
-    margin-bottom: 6px;
-  }
+    .brand {
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--mim-gold);
+      margin-bottom: 6px;
+    }
 
-  h1 {
-    margin: 0 0 8px;
-  }
+    h1 {
+      margin: 0 0 8px;
+    }
 
-  .subtitle {
-    margin-bottom: 16px;
-    color: var(--text-muted);
-    text-align: center;
-  }
+    .subtitle {
+      margin-bottom: 16px;
+      color: var(--text-muted);
+      text-align: center;
+    }
 
-  .banner {
-    background: rgba(34, 21, 54, 0.85);
-    border: 1px solid rgba(255,255,255,0.12);
-    border-radius: 12px;
-    padding: 12px;
-    text-align: center;
-    margin-bottom: 14px;
-  }
+    .banner {
+      background: rgba(34, 21, 54, 0.85);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 12px;
+      padding: 12px;
+      text-align: center;
+      margin-bottom: 14px;
+    }
 
-  .bingo-board {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 8px;
-    width: 90vw;
-    max-width: 450px;
-    margin-bottom: 18px;
-  }
+    .bingo-board {
+      display: grid;
+      /* columns will be set to 4 in JS */
+      gap: 8px;
+      width: 90vw;
+      max-width: 450px;
+      margin-bottom: 18px;
+    }
 
-  .square {
-    background: rgba(28, 20, 52, 0.85);
-    border: 1px solid rgba(255,255,255,0.18);
-    border-radius: 10px;
-    padding: 10px;
-    text-align: center;
-    font-size: 0.82rem;
-    transition: all 0.3s ease;
-  }
+    .square {
+      background: rgba(28, 20, 52, 0.85);
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 10px;
+      padding: 10px;
+      text-align: center;
+      font-size: 0.82rem;
+      transition: all 0.3s ease;
+    }
 
-  .square.filled {
-    background: var(--mim-gold);
-    color: var(--mim-dark);
-    font-weight: 600;
-    box-shadow: 0 0 10px rgba(255, 213, 79, 0.5);
-  }
+    .square.filled {
+      background: var(--mim-gold);
+      color: var(--mim-dark);
+      font-weight: 600;
+      box-shadow: 0 0 10px rgba(255, 213, 79, 0.5);
+    }
 
-  .reward {
-    display: none;
-    border: 1px solid var(--mim-gold-soft);
-    border-radius: 12px;
-    background: rgba(255, 214, 79, 0.1);
-    color: var(--mim-gold);
-    padding: 14px;
-    text-align: center;
-  }
-</style>
+    .reward {
+      display: none;
+      border: 1px solid var(--mim-gold-soft);
+      border-radius: 12px;
+      background: rgba(255, 214, 79, 0.1);
+      color: var(--mim-gold);
+      padding: 14px;
+      text-align: center;
+    }
+  </style>
 </head>
 <body>
   <div class="brand">Melanated in Melbourne</div>
   <h1>📡 Tap In Bingo</h1>
-  <p class="subtitle">Scan NFC tags around the space. Fill a row, column, or diagonal to win!</p>
+  <p class="subtitle">Scan NFC tags around the space. Fill a row, column, or diagonal on your 4×4 board to win!</p>
 
   <div id="message" class="banner">Loading…</div>
 
@@ -104,85 +104,182 @@
     🎉 Bingo! You’ve completed a Tap In line — show this to a host for your reward.
   </div>
 
-<script>
-(function(){
-  const TAGS = {
-    tag1: {label:'Song of the Week'},
-    tag2: {label:'Meet Someone New'},
-    tag3: {label:'MiM Episode Tag'},
-    tag4: {label:'Compliment Swap'},
-    tag5: {label:'Laugh Together'},
-    tag6: {label:'Share a Goal'},
-    tag7: {label:'Tap with Host'},
-    tag8: {label:'Solo Moment'},
-    tag9: {label:'Creative Spark'},
-    tag10:{label:'Stories We Need'},
-    tag11:{label:'Grounded Space'},
-    tag12:{label:'Gratitude Tap'},
-    tag13:{label:'Find Someone in Yellow'},
-    tag14:{label:'Your Soundtrack'},
-    tag15:{label:'Community Wish'},
-    tag16:{label:'Podcast Pitch'},
-    tag17:{label:'Ask “What Brings You Joy?”'},
-    tag18:{label:'Episode Tap'},
-    tag19:{label:'Deep Breath'},
-    tag20:{label:'Reflect & Share'},
-    tag21:{label:'Selfie Tag'},
-    tag22:{label:'Connection Tap'},
-    tag23:{label:'Free Space'},
-    tag24:{label:'Proud Moment'},
-    tag25:{label:'Hidden Gem'}
-  };
+  <script>
+  (function () {
+    // 🔗 Google Apps Script tracking endpoint
+    const TRACKING_URL = 'https://script.google.com/macros/s/AKfycbw_sb0oc3qbJag8lU4g7tHWsWjdWZ9iUaoCtyyjZNn0H0Muurt92DOmT_RdjPVArW6nbw/exec';
 
-  const STORAGE_KEY='mim_bingo_state';
-  const state=loadState();
-  const tagParam=new URLSearchParams(window.location.search).get('tag');
-  const messageEl=document.getElementById('message');
-  const grid=document.getElementById('bingo-grid');
-  const reward=document.getElementById('reward');
-
-  if(tagParam && TAGS[tagParam]){
-    if(!state.collected.includes(tagParam)){
-      state.collected.push(tagParam);
-      saveState();
-      messageEl.textContent=`✅ You unlocked: ${TAGS[tagParam].label}`;
+    // 🪪 Player ID helpers
+    function getPlayerId() {
+      let id = localStorage.getItem('mim_player_id');
+      if (!id) {
+        id = 'player-' + Math.random().toString(36).slice(2) + Date.now().toString(36);
+        localStorage.setItem('mim_player_id', id);
+      }
+      return id;
     }
-  }else if(!tagParam){
-    messageEl.textContent='Tap a tag to fill your Bingo board!';
-  }
 
-  renderBoard();
-  checkForBingo();
+    function sendLog(payload) {
+      try {
+        fetch(TRACKING_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+      } catch (e) {
+        // logging is "nice to have" – ignore failures
+      }
+    }
 
-  function loadState(){
-    try{
-      const raw=localStorage.getItem(STORAGE_KEY);
-      return raw?JSON.parse(raw):{collected:[]};
-    }catch{return{collected:[]}}
-  }
-  function saveState(){localStorage.setItem(STORAGE_KEY,JSON.stringify(state));}
+    // 🟣 All possible tags (25 total)
+    const ALL_TAGS = {
+      tag1:  { label: 'Song of the Week',        prompt: 'Ask someone what their “song of the week” is — and tell them yours.' },
+      tag2:  { label: 'Meet Someone New',        prompt: 'Find someone you haven’t met yet and ask what brought them here tonight.' },
+      tag3:  { label: 'MiM Episode Tag',         prompt: 'If tonight were an episode of Melanated in Melbourne, what would the title be?' },
+      tag4:  { label: 'Compliment Swap',         prompt: 'Swap compliments with a stranger — one genuine thing each.' },
+      tag5:  { label: 'Laugh Together',          prompt: 'Find someone laughing and ask what made them laugh tonight.' },
+      tag6:  { label: 'Share a Goal',            prompt: 'Tell someone about a goal you’re working toward — big or small.' },
+      tag7:  { label: 'Tap with Host',           prompt: 'Find a host or volunteer with a Tap In badge and introduce yourself.' },
+      tag8:  { label: 'Solo Moment',             prompt: 'Take a breath. What’s something you’re grateful for in this moment?' },
+      tag9:  { label: 'Creative Spark',          prompt: 'Ask someone what inspires them to create, share, or show up lately.' },
+      tag10: { label: 'Stories We Need',         prompt: 'What kind of stories do you wish you heard more often — in media or real life?' },
+      tag11: { label: 'Grounded Space',          prompt: 'Think about what helps you feel grounded or safe. Take a pause here.' },
+      tag12: { label: 'Gratitude Tap',           prompt: 'Share one thing that made you smile this week with someone nearby.' },
+      tag13: { label: 'Find Someone in Yellow',  prompt: 'Find someone wearing yellow or gold and give them a compliment.' },
+      tag14: { label: 'Your Soundtrack',         prompt: 'If we made a playlist for tonight, what song would you add — and why?' },
+      tag15: { label: 'Community Wish',          prompt: 'What’s one thing you’d love to see more of in our creative communities?' },
+      tag16: { label: 'Podcast Pitch',           prompt: 'If you could host an episode of MiM, what would your first topic be?' },
+      tag17: { label: 'Ask “What Brings You Joy?”', prompt: 'Ask someone: “What’s been bringing you joy lately?”' },
+      tag18: { label: 'Episode Tap',             prompt: 'Share your favourite MiM episode or podcast moment with someone nearby.' },
+      tag19: { label: 'Deep Breath',             prompt: 'Pause. Take one deep breath — remind yourself you belong here.' },
+      tag20: { label: 'Reflect & Share',         prompt: 'Think about your younger self. What’s one thing you’d tell them now?' },
+      tag21: { label: 'Selfie Tag',              prompt: 'With someone new, take a selfie and call it your “Episode 1 cover art.”' },
+      tag22: { label: 'Connection Tap',          prompt: 'Tap this after meeting someone new — you both just earned a connection point.' },
+      tag23: { label: 'Free Space',              prompt: 'You’re already glowing — this one’s a freebie!' },
+      tag24: { label: 'Proud Moment',            prompt: 'Tell someone one thing you’re proud of yourself for this year.' },
+      tag25: { label: 'Hidden Gem',              prompt: 'Share a Melbourne spot, show, or podcast you think deserves more love.' }
+    };
 
-  function renderBoard(){
-    grid.innerHTML='';
-    Object.entries(TAGS).forEach(([id,cfg])=>{
-      const sq=document.createElement('div');
-      sq.className='square'+(state.collected.includes(id)?' filled':'');
-      sq.textContent=cfg.label;
-      grid.appendChild(sq);
-    });
-  }
+    const STORAGE_KEY = 'mim_bingo_4x4_state_v2';
 
-  function checkForBingo(){
-    const filled=state.collected;
-    const ids=Object.keys(TAGS);
-    const board=Array.from({length:5},(_,r)=>ids.slice(r*5,(r+1)*5));
-    const win=board.some(row=>row.every(id=>filled.includes(id)))||
-              [...Array(5).keys()].some(c=>board.every(r=>filled.includes(r[c])))||
-              board.every((r,i)=>filled.includes(r[i]))||
-              board.every((r,i)=>filled.includes(r[4-i]));
-    if(win) reward.style.display='block';
-  }
-})();
-</script>
+    function loadState() {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        return raw ? JSON.parse(raw) : { collected: [], layout: [], bingoLogged: false };
+      } catch {
+        return { collected: [], layout: [], bingoLogged: false };
+      }
+    }
+
+    function saveState(state) {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    }
+
+    const state = loadState();
+    const allKeys = Object.keys(ALL_TAGS);
+
+    // 🟠 randomise 4×4 layout for new players
+    if (!state.layout || state.layout.length !== 16) {
+      state.layout = shuffle(allKeys).slice(0, 16);
+      state.collected = [];         // reset collected if layout changes
+      state.bingoLogged = false;
+      saveState(state);
+
+      sendLog({
+        event: 'board_created',
+        playerId: getPlayerId(),
+        tagId: null
+      });
+    }
+
+    // Build TAGS object for this player’s layout
+    const TAGS = {};
+    state.layout.forEach(k => { TAGS[k] = ALL_TAGS[k]; });
+
+    const params = new URLSearchParams(window.location.search);
+    const tagParam = (params.get('tag') || '').trim();
+
+    const messageEl = document.getElementById('message');
+    const grid = document.getElementById('bingo-grid');
+    const reward = document.getElementById('reward');
+
+    // 🟣 Handle tap
+    if (tagParam && TAGS[tagParam]) {
+      const isNew = !state.collected.includes(tagParam);
+      if (isNew) {
+        state.collected.push(tagParam);
+        saveState(state);
+
+        sendLog({
+          event: 'tag_unlocked',
+          playerId: getPlayerId(),
+          tagId: tagParam
+        });
+      }
+
+      const cfg = TAGS[tagParam];
+      messageEl.innerHTML = `
+        <div style="font-weight:600;">✅ You unlocked: ${cfg.label}</div>
+        <div style="margin-top:6px;color:#cbb9e5;font-size:0.9rem;">
+          ${cfg.prompt}
+        </div>
+      `;
+    } else if (!tagParam) {
+      messageEl.textContent = 'Tap a tag to fill your 4×4 Bingo board!';
+    } else {
+      messageEl.textContent = 'That tag isn’t part of your board tonight.';
+    }
+
+    renderBoard();
+    checkForBingo();
+
+    // 🧩 render 4×4 board
+    function renderBoard() {
+      grid.innerHTML = '';
+      grid.style.gridTemplateColumns = 'repeat(4, 1fr)';
+      Object.entries(TAGS).forEach(([id, cfg]) => {
+        const sq = document.createElement('div');
+        sq.className = 'square' + (state.collected.includes(id) ? ' filled' : '');
+        sq.textContent = cfg.label;
+        grid.appendChild(sq);
+      });
+    }
+
+    // ✅ check for any completed line
+    function checkForBingo() {
+      const filled = state.collected;
+      const ids = Object.keys(TAGS);           // 16 ids in order
+      const board = Array.from({ length: 4 }, (_, r) => ids.slice(r * 4, (r + 1) * 4));
+
+      const hasRow = board.some(row => row.every(id => filled.includes(id)));
+      const hasCol = [...Array(4).keys()].some(c => board.every(row => filled.includes(row[c])));
+      const hasDiag1 = board.every((row, i) => filled.includes(row[i]));
+      const hasDiag2 = board.every((row, i) => filled.includes(row[3 - i]));
+
+      if (hasRow || hasCol || hasDiag1 || hasDiag2) {
+        reward.style.display = 'block';
+
+        if (!state.bingoLogged) {
+          state.bingoLogged = true;
+          saveState(state);
+          sendLog({
+            event: 'bingo_completed',
+            playerId: getPlayerId(),
+            tagId: null
+          });
+        }
+      }
+    }
+
+    // simple shuffle helper
+    function shuffle(arr) {
+      return arr
+        .map(v => ({ v, r: Math.random() }))
+        .sort((a, b) => a.r - b.r)
+        .map(o => o.v);
+    }
+  })();
+  </script>
 </body>
 </html>
